@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UMSU | Unggul, Cerdas, Terpercaya</title>
+  <style>
+    :root {
+      --blue: #0756a5;
+      --blue-dark: #07366c;
+      --blue-light: #eaf3fc;
+      --yellow: #f4c542;
+      --text: #243247;
+      --muted: #66758a;
+      --white: #fff;
+      --bg: #f6f8fb;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      background: var(--blue-dark);
+      color: #fff;
+      font-size: 12px;
+      padding: 8px 6%;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e8edf3;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      min-height: 82px;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-logo { width: 54px; height: 54px; object-fit: contain; }
+    .brand-name { font-size: 21px; font-weight: 800; color: var(--blue-dark); line-height: 1.2; }
+    .brand-tag { font-size: 10px; letter-spacing: 1.2px; color: var(--muted); }
+    .menu { display: flex; align-items: center; gap: 23px; font-size: 13px; font-weight: 700; }
+    .menu a:hover { color: var(--blue); }
+    .menu .cta {
+      background: var(--yellow); color: var(--blue-dark);
+      padding: 10px 15px; border-radius: 5px;
+    }
+    .hero {
+      background: linear-gradient(120deg, #07366c 0%, #0756a5 65%, #1675bd 100%);
+      color: #fff;
+      padding: 78px 24px 84px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 380px; height: 380px;
+      border: 60px solid rgba(255,255,255,.06);
+      border-radius: 50%;
+      right: -100px; top: -150px;
+    }
+    .hero-inner { max-width: 1120px; margin: auto; position: relative; z-index: 1; }
+    .eyebrow {
+      display: inline-block;
+      color: var(--yellow);
+      border: 1px solid rgba(244,197,66,.65);
+      padding: 5px 12px; border-radius: 3px;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+    h1 { font-size: clamp(34px, 5vw, 55px); line-height: 1.12; max-width: 720px; margin-bottom: 18px; }
+    .hero p { max-width: 620px; color: #e1edfb; font-size: 16px; margin-bottom: 28px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 12px 19px; border-radius: 4px; font-weight: 700; font-size: 13px; }
+    .btn-yellow { background: var(--yellow); color: var(--blue-dark); }
+    .btn-outline { border: 1px solid rgba(255,255,255,.7); color: #fff; }
+    .quick-info {
+      max-width: 1040px; margin: -28px auto 0; padding: 0 20px;
+      display: grid; grid-template-columns: repeat(3, 1fr); position: relative; z-index: 2;
+    }
+    .quick-card {
+      background: #fff; padding: 22px 24px;
+      border: 1px solid #edf0f5; box-shadow: 0 8px 25px rgba(19,49,84,.07);
+    }
+    .quick-card + .quick-card { border-left: 0; }
+    .quick-card strong { display: block; color: var(--blue); font-size: 15px; margin-bottom: 4px; }
+    .quick-card span { color: var(--muted); font-size: 12px; }
+    section { padding: 68px 24px; }
+    .section-inner { max-width: 1120px; margin: auto; }
+    .section-heading { margin-bottom: 30px; }
+    .section-heading .kicker { color: var(--blue); text-transform: uppercase; font-weight: 800; letter-spacing: 1.5px; font-size: 11px; }
+    h2 { color: var(--blue-dark); font-size: clamp(25px, 3vw, 34px); line-height: 1.25; margin: 7px 0 10px; }
+    .section-heading p { color: var(--muted); max-width: 650px; font-size: 14px; }
+    .programs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .program-card {
+      border: 1px solid #e5ebf2; border-radius: 7px; padding: 25px;
+      background: #fff; transition: transform .2s, box-shadow .2s;
+    }
+    .program-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(14,54,97,.09); }
+    .program-icon {
+      width: 44px; height: 44px; display: grid; place-items: center;
+      background: var(--blue-light); color: var(--blue); border-radius: 6px;
+      font-size: 20px; font-weight: 800; margin-bottom: 17px;
+    }
+    .program-card h3 { font-size: 17px; color: var(--blue-dark); margin-bottom: 8px; }
+    .program-card p { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+    .text-link { color: var(--blue); font-size: 12px; font-weight: 800; }
+    .news-section { background: var(--bg); }
+    .section-top { display: flex; justify-content: space-between; align-items: end; gap: 18px; margin-bottom: 28px; }
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .news-card { background: #fff; border: 1px solid #e8edf3; border-radius: 7px; overflow: hidden; }
+    .news-placeholder {
+      height: 125px; background: linear-gradient(135deg, #dceafa, #f1f5fa);
+      display: grid; place-items: center; color: #6b8db2; font-size: 12px;
+      font-weight: 700; letter-spacing: 1px;
+    }
+    .news-content { padding: 20px; }
+    .news-label { color: var(--blue); font-size: 10px; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; }
+    .news-card h3 { font-size: 15px; line-height: 1.45; margin: 8px 0 12px; color: var(--blue-dark); }
+    .news-date { color: #8491a3; font-size: 11px; }
+    .academic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; align-items: center; }
+    .academic-panel { background: var(--blue-light); padding: 28px; border-radius: 8px; border-left: 5px solid var(--yellow); }
+    .academic-panel h3 { color: var(--blue-dark); margin-bottom: 8px; }
+    .academic-panel p { color: var(--muted); font-size: 13px; }
+    .service-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .service-item { border: 1px solid #e5ebf2; padding: 15px; border-radius: 5px; font-size: 13px; font-weight: 700; }
+    .service-item span { color: var(--blue); margin-right: 8px; }
+    .closing { background: var(--blue-dark); color: #fff; text-align: center; padding: 48px 24px; }
+    .closing h2 { color: #fff; margin-bottom: 12px; }
+    .closing p { color: #d5e4f5; margin-bottom: 22px; font-size: 14px; }
+    footer { background: #05294f; color: #d3deeb; padding: 38px 24px 18px; }
+    .footer-inner { max-width: 1120px; margin: auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 35px; }
+    footer h3, footer h4 { color: #fff; margin-bottom: 12px; }
+    footer p, footer a { font-size: 12px; color: #c3d0df; }
+    footer a { display: block; margin: 6px 0; }
+    .copyright { max-width: 1120px; margin: 28px auto 0; border-top: 1px solid rgba(255,255,255,.15); padding-top: 15px; font-size: 11px; color: #a9bbcf; }
+    @media (max-width: 800px) {
+      .nav { align-items: flex-start; flex-direction: column; gap: 14px; }
+      .menu { flex-wrap: wrap; gap: 13px; }
+      .quick-info, .programs, .news-grid { grid-template-columns: 1fr; }
+      .quick-card + .quick-card { border-left: 1px solid #edf0f5; border-top: 0; }
+      .academic-grid, .footer-inner { grid-template-columns: 1fr; }
+      .section-top { align-items: flex-start; flex-direction: column; }
+      section { padding: 48px 20px; }
+      .hero { padding-top: 58px; }
+    }
+    @media (max-width: 440px) {
+      .service-list { grid-template-columns: 1fr; }
+      .brand-name { font-size: 18px; }
+      .topbar { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <span>Universitas Muhammadiyah Sumatera Utara</span>
+    <span>Medan, Sumatera Utara · Indonesia</span>
+  </div>
+
+  <header>
+    <nav class="nav">
+      <a class="brand" href="#beranda" aria-label="Beranda UMSU">
+        <img class="brand-logo" src="logo-umsu.png" alt="Logo Universitas Muhammadiyah Sumatera Utara">
+        <div>
+          <div class="brand-name">UMSU</div>
+          <div class="brand-tag">UNGGUL · CERDAS · TERPERCAYA</div>
+        </div>
+      </a>
+      <div class="menu">
+        <a href="#beranda">Beranda</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#program">Program</a>
+        <a href="#berita">Berita</a>
+        <a href="#akademik">Akademik</a>
+        <a class="cta" href="https://umsu.ac.id/">Website Resmi ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="hero-inner">
+        <span class="eyebrow">UNIVERSITAS MUHAMMADIYAH SUMATERA UTARA</span>
+        <h1>Unggul dalam Ilmu,<br>Cerdas dalam Berkarya.</h1>
+        <p>Membangun generasi berilmu, berintegritas, dan siap menghadapi tantangan masa depan melalui pendidikan, penelitian, serta pengabdian kepada masyarakat.</p>
+        <div class="hero-actions">
+          <a class="btn btn-yellow" href="#program">Jelajahi Program</a>
+          <a class="btn btn-outline" href="#tentang">Kenali UMSU</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="quick-info" id="tentang">
+      <div class="quick-card">
+        <strong>Pendidikan Berkualitas</strong>
+        <span>Mendorong pembelajaran dan pengembangan kompetensi.</span>
+      </div>
+      <div class="quick-card">
+        <strong>Riset dan Inovasi</strong>
+        <span>Mendukung karya ilmiah dan inovasi yang berdampak.</span>
+      </div>
+      <div class="quick-card">
+        <strong>Pengabdian Masyarakat</strong>
+        <span>Menghadirkan ilmu untuk manfaat yang lebih luas.</span>
+      </div>
+    </div>
+
+    <section id="program">
+      <div class="section-inner">
+        <div class="section-heading">
+          <span class="kicker">Pendidikan</span>
+          <h2>Temukan Program Pendidikan</h2>
+          <p>Pilih jenjang pendidikan yang sesuai dengan tujuan dan rencana masa depan Anda.</p>
+        </div>
+        <div class="programs">
+          <article class="program-card">
+            <div class="program-icon">S1</div>
+            <h3>Program Sarjana</h3>
+            <p>Pengembangan ilmu dan keterampilan melalui berbagai bidang studi untuk mempersiapkan lulusan yang kompeten.</p>
+            <a class="text-link" href="https://umsu.ac.id/">Lihat selengkapnya →</a>
+          </article>
+          <article class="program-card">
+            <div class="program-icon">S2</div>
+            <h3>Program Pascasarjana</h3>
+            <p>Pendidikan lanjutan untuk memperdalam keahlian, mengembangkan pemikiran kritis, dan memperkuat penelitian.</p>
+            <a class="text-link" href="https://umsu.ac.id/">Lihat selengkapnya →</a>
+          </article>
+          <article class="program-card">
+            <div class="program-icon">PRO</div>
+            <h3>Program Profesi</h3>
+            <p>Pembelajaran profesional untuk mendukung kompetensi dan kesiapan menjalankan bidang pekerjaan tertentu.</p>
+            <a class="text-link" href="https://umsu.ac.id/">Lihat selengkapnya →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="news-section" id="berita">
+      <div class="section-inner">
+        <div class="section-top">
+          <div class="section-heading" style="margin-bottom:0">
+            <span class="kicker">Kabar Kampus</span>
+            <h2>Berita dan Kegiatan</h2>
+            <p>Informasi kegiatan, pencapaian, dan perkembangan terbaru di lingkungan kampus.</p>
+          </div>
+          <a class="text-link" href="https://umsu.ac.id/">Semua berita →</a>
+        </div>
+        <div class="news-grid">
+          <article class="news-card">
+            <div class="news-placeholder">INFORMASI KAMPUS</div>
+            <div class="news-content">
+              <span class="news-label">Akademik</span>
+              <h3>Kegiatan akademik dan pengembangan kualitas pendidikan</h3>
+              <span class="news-date">Berita Universitas</span>
+            </div>
+          </article>
+          <article class="news-card">
+            <div class="news-placeholder">RISET & INOVASI</div>
+            <div class="news-content">
+              <span class="news-label">Penelitian</span>
+              <h3>Mendorong inovasi dan karya yang bermanfaat bagi masyarakat</h3>
+              <span class="news-date">Info dan kegiatan</span>
+            </div>
+          </article>
+          <article class="news-card">
+            <div class="news-placeholder">KAMPUS BERDAMPAK</div>
+            <div class="news-content">
+              <span class="news-label">Pengabdian</span>
+              <h3>Kolaborasi sivitas akademika untuk memberikan dampak positif</h3>
+              <span class="news-date">Kabar kampus</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="akademik">
+      <div class="section-inner academic-grid">
+        <div>
+          <div class="section-heading">
+            <span class="kicker">Layanan Kampus</span>
+            <h2>Informasi Akademik</h2>
+            <p>Akses informasi dan layanan pendukung kegiatan akademik mahasiswa dalam satu bagian yang mudah ditemukan.</p>
+          </div>
+          <a class="btn btn-yellow" style="background:var(--blue);color:#fff" href="https://umsu.ac.id/">Kunjungi UMSU</a>
+        </div>
+        <div class="academic-panel">
+          <h3>Layanan untuk Mahasiswa</h3>
+          <p>Gunakan daftar berikut sebagai pintasan menuju informasi akademik yang dibutuhkan.</p>
+          <div class="service-list" style="margin-top:18px">
+            <a class="service-item" href="https://umsu.ac.id/"><span>›</span>Data Akademik</a>
+            <a class="service-item" href="https://umsu.ac.id/"><span>›</span>Akreditasi</a>
+            <a class="service-item" href="https://umsu.ac.id/"><span>›</span>Kurikulum</a>
+            <a class="service-item" href="https://umsu.ac.id/"><span>›</span>Layanan Mahasiswa</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="section-inner">
+        <h2>Melangkah Bersama Menuju Masa Depan</h2>
+        <p>Unggul dalam prestasi, cerdas dalam berpikir, terpercaya dalam berkarya.</p>
+        <a class="btn btn-yellow" href="https://umsu.ac.id/">Kunjungi Website Resmi</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <h3>UMSU</h3>
+        <p>Universitas Muhammadiyah Sumatera Utara</p>
+        <p style="margin-top:10px">Unggul · Cerdas · Terpercaya</p>
+      </div>
+      <div>
+        <h4>Kontak Kampus Utama</h4>
+        <p>Jl. Kapt. Mukhtar Basri No. 3, Medan, Sumatera Utara 20238</p>
+        <p style="margin-top:7px">Telepon: (061) 6619056</p>
+      </div>
+      <div>
+        <h4>Navigasi</h4>
+        <a href="#beranda">Beranda</a>
+        <a href="#program">Program Pendidikan</a>
+        <a href="#berita">Berita Kampus</a>
+        <a href="#akademik">Informasi Akademik</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 UMSU — Contoh tampilan HTML untuk latihan. Bukan website resmi.</div>
+  </footer>
+</body>
+</html>
